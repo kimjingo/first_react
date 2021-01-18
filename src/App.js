@@ -1,47 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
-
-class Subject extends Component {
-  render() {
-    return (
-      <header>
-        <h1>WEB</h1>
-        world wide web!
-      </header>
-    )
-  }
-}
-
-class TOC extends Component {
-  render() {
-    return (
-      <nav>
-        <li><a href="1.html">HTML</a></li>
-        <li><a href="2.html">CSS</a></li>
-        <li><a href="3.html">Javascript</a></li>
-      </nav>
-    )
-  }
-}
-
-class Content extends Component {
-  render() {
-    return (
-      <article>
-        <h2>HTML</h2>
-        HTML is Hyper Text Markup Language.
-      </article>
-    )
-  }
-}
+import TOC from './components/TOC';
+import Subject from './components/Subject';
+import Content from './components/Content';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      subject : {title:"web", sub:"world wide web!!"},
+      data : [
+        {id:1, a:"1.html", title:"HTML"},
+        {id:2, a:"2.html", title:"CSS"},
+        {id:3, a:"3.html", title:"JS"},
+      ]
+    }
+  }
   render(){
     return (
       <div className="App">
-        <Subject></Subject>
-        <TOC></TOC>
-        <Content></Content>
+        <Subject title={this.state.subject.title} sub={this.state.subject.sub} ></Subject>
+        <TOC data={this.state.data}></TOC>
+        <Content title="HTML" desc="HTML is a Hyper Text Markup Language"></Content>
       </div>
     );
   }
