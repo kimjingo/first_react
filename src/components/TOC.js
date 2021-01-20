@@ -4,11 +4,19 @@ import { findRenderedComponentWithType } from 'react-dom/test-utils';
 class TOC extends Component {
 
   render() {
+    console.log('TOC render');
     var  lists = [];
     var data = this.props.data;
     let i = 0;
     while(i<data.length){
-        lists.push(<li key={data[i].id}><a href={data[i].a}>{data[i].title}</a></li>);
+        lists.push(<li key={data[i].id}><a 
+          href={data[i].a}
+          data-id={data[i].id}
+          onClick={function(e){
+            e.preventDefault();
+            this.props.onChangePage();
+          }.bind(this)}
+        >{data[i].title}</a></li>);
         i=i+1;
     }
 
